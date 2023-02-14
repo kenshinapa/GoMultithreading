@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"math"
+	"path/filepath"
 	"regexp"
 	"strconv"
+	"strings"
+	"time"
 )
 
 type Point2D struct {
@@ -33,6 +37,15 @@ func findArea(pointsStr string) {
 }
 
 func main() {
-	line := "(4,10),(12,8),(10,3),(2,2),(7,5)"
-	findArea(line)
+	absPath, _ := filepath.Abs("./")
+	dat, _ := ioutil.ReadFile(filepath.Join(absPath, "polygons.txt"))
+	text := string(dat)
+
+	start := time.Now()
+	for _, line := range strings.Split(text, "\n") {
+		//line := "(4,10),(12,8),(10,3),(2,2),(7,5)"
+		findArea(line)
+	}
+	elapsed := time.Since(start)
+	fmt.Printf("Time taken: %s", elapsed)
 }
