@@ -106,6 +106,6 @@ func main() {
 	close(textChannel)
 	results := <-resultsChannel
 	elapsed := time.Since(start)
-	fmt.Printf("%v\n", windDist)
+	fmt.Printf("%v\n", results)
 	fmt.Printf("Processing took %s\n", elapsed)
 }
